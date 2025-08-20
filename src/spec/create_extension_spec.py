@@ -12,7 +12,9 @@ def main():
     ns_builder = NWBNamespaceBuilder(
         name="""ndx-fscv""",
         version="""0.1.0""",
-        doc="""This NWB extension defines data types for Fast-Scan Cyclic Voltammetry (FSCV), a neurochemical recording technique. It supports storing the applied triangular ramp waveform, measured electrochemical current, and derived cyclic voltammograms used to study dopamine and other neuromodulator dynamics.""",
+        doc="""This NWB extension defines data types for Fast-Scan Cyclic Voltammetry (FSCV), a neurochemical recording
+        technique. It supports storing the applied triangular ramp waveform, measured electrochemical current, and
+        derived cyclic voltammograms used to study dopamine and other neuromodulator dynamics.""",
         author=[
             "Ben Dichter",
             "Szonja Weigl",
@@ -23,7 +25,7 @@ def main():
         ],
     )
     ns_builder.include_namespace("core")
-    
+
     # TODO: if your extension builds on another extension, include the namespace
     # of the other extension below
     # ns_builder.include_namespace("ndx-other-extension")
