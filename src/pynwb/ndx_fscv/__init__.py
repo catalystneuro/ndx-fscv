@@ -12,15 +12,14 @@ if not __spec_path.exists():
 # Load the namespace
 load_namespaces(str(__spec_path))
 
-# TODO: Define your classes here to make them accessible at the package level.
-# Either have PyNWB generate a class from the spec using `get_class` as shown
-# below or write a custom class and register it using the class decorator
-# `@register_class("TetrodeSeries", "ndx-fscv")`
-TetrodeSeries = get_class("TetrodeSeries", "ndx-fscv")
+FSCVResponseSeries = get_class("FSCVResponseSeries", "ndx-fscv")
+FSCVExcitationSeries = get_class("FSCVExcitationSeries", "ndx-fscv")
+FSCVBackgroundSubtractedSeries = get_class("FSCVBackgroundSubtractedSeries", "ndx-fscv")
 
-# TODO: Add all classes to __all__ to make them accessible at the package level
 __all__ = [
-    "TetrodeSeries",
+    "FSCVResponseSeries",
+    "FSCVExcitationSeries",
+    "FSCVBackgroundSubtractedSeries",
 ]
 
 # Remove these functions/modules from the package
