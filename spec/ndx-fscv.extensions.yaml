@@ -80,9 +80,8 @@ groups:
     attributes:
     - name: unit
       dtype: text
-      default_value: amperes
+      value: amperes
       doc: Unit of the data values, should be 'amperes'.
-      required: false
   links:
   - name: response_series
     target_type: FSCVResponseSeries

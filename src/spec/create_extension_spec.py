@@ -144,7 +144,7 @@ def main():
                         name="unit",
                         doc="Unit of the data values, should be 'amperes'.",
                         dtype="text",
-                        default_value="amperes",
+                        value="amperes",
                     ),
                 ],
             ),
