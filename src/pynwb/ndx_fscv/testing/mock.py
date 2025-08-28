@@ -5,10 +5,10 @@ from typing import Optional
 import numpy as np
 from pynwb.testing.mock.ecephys import mock_ElectrodesTable
 from pynwb.testing.mock.file import mock_NWBFile
-
-from ndx_fscv import FSCVResponseSeries, FSCVExcitationSeries, FSCVBackgroundSubtractedSeries
 from pynwb import NWBFile
 from pynwb.testing.mock.utils import name_generator
+
+from ndx_fscv import FSCVResponseSeries, FSCVExcitationSeries
 
 
 def mock_FSCVExcitationSeries(
@@ -120,53 +120,3 @@ def mock_FSCVResponseSeries(
     nwbfile.add_acquisition(fscv_response_series)
 
     return fscv_response_series
-
-
-def mock_FSCVBackgroundSubtractedSeries(
-    name: Optional[str] = None,
-    description: str = "A mock FSCV background-subtracted series to be used for testing.",
-    number_of_electrodes: int = 4,
-    sampling_frequency: float = 2140.0,
-    response_series: Optional[FSCVResponseSeries] = None,
-    nwbfile: Optional[NWBFile] = None,
-) -> FSCVBackgroundSubtractedSeries:
-    """
-    Create a mock FSCVBackgroundSubtractedSeries for testing.
-
-    Parameters
-    ----------
-    name : str, optional
-        Name of the background-subtracted series.
-    description : str
-        Description of the series.
-    number_of_electrodes : int
-        Number of electrodes.
-    sampling_frequency : float
-        Sampling frequency (Hz).
-    response_series : FSCVResponseSeries, optional
-        Reference to raw FSCVResponseSeries.
-    nwbfile : NWBFile, optional
-        NWBFile to attach the series to.
-
-    Returns
-    -------
-    FSCVBackgroundSubtractedSeries
-    """
-    if response_series is None:
-        response_series = mock_FSCVResponseSeries(
-            number_of_electrodes=number_of_electrodes,
-            sampling_frequency=sampling_frequency,
-            nwbfile=nwbfile,
-        )
-    data = np.random.rand(100, number_of_electrodes)
-    bkg_series = FSCVBackgroundSubtractedSeries(
-        name=name or name_generator("fscv_background_subtracted_series"),
-        description=description,
-        data=data,
-        rate=sampling_frequency,
-        unit="amperes",
-        response_series=response_series,
-    )
-    if nwbfile is not None:
-        nwbfile.add_acquisition(bkg_series)
-    return bkg_series
