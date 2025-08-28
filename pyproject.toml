@@ -9,14 +9,13 @@ authors = [
     { name="Ben Dichter", email="ben.dicther@catalystneuro.com" },
     { name="Szonja Weigl", email="szonja.weigl@catalystneuro.com" },
 ]
-description = "This NWB extension defines data types for Fast-Scan Cyclic Voltammetry (FSCV), a neurochemical recording technique. It supports storing the applied triangular ramp waveform, measured electrochemical current, and derived cyclic voltammograms used to study dopamine and other neuromodulator dynamics."
+description = "This NWB extension defines data types for Fast-Scan Cyclic Voltammetry (FSCV), a neurochemical recording technique used to study dopamine and other neuromodulator dynamics. It supports storing the applied triangular ramp waveform and the measured electrochemical current."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT"
 classifiers = [
     # TODO: update these classifiers before release
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
