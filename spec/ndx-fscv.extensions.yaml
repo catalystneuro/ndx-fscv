@@ -1,9 +1,63 @@
 groups:
-- neurodata_type_def: TetrodeSeries
-  neurodata_type_inc: ElectricalSeries
-  doc: An extension of ElectricalSeries to include the tetrode ID for each time 
-    series.
+- neurodata_type_def: FSCVResponseSeries
+  neurodata_type_inc: TimeSeries
+  doc: An extension of TimeSeries to store the raw FSCV current measurements
+    recorded over time, linked to electrodes and excitation waveform.
   attributes:
-  - name: trode_id
-    dtype: int32
-    doc: The tetrode ID.
+  - name: current_to_voltage_factor
+    dtype: float64
+    doc: The factor used to multiply each data value to convert measured current
+      to voltage.
+    required: false
+  datasets:
+  - name: data
+    dtype: float64
+    dims:
+    - num_timepoints
+    - num_electrodes
+    shape:
+    - null
+    - null
+    doc: The data values. It should be a 2D array where the first dimension
+      represents time points and the second dimension represents measured
+      current from the electrodes.
+    attributes:
+    - name: unit
+      dtype: text
+      value: amperes
+      doc: Unit of the data values, should be 'amperes'.
+  - name: electrodes
+    neurodata_type_inc: DynamicTableRegion
+    doc: A reference to the electrodes table region this data comes from.
+  links:
+  - name: excitation_series
+    target_type: FSCVExcitationSeries
+    doc: Link to the excitation waveform applied during FSCV.
+- neurodata_type_def: FSCVExcitationSeries
+  neurodata_type_inc: TimeSeries
+  doc: An extension of TimeSeries to store the applied FSCV excitation waveform
+    over time.
+  attributes:
+  - name: scan_frequency
+    dtype: float64
+    doc: The frequency at which the excitation waveform (e.g. triangular ramp)
+      is applied, in hertz.
+  - name: sweep_rate
+    dtype: float64
+    doc: The voltage sweep rate during a single scan, in volts per second. This
+      represents the rate of potential change within each scan.
+  - name: waveform_shape
+    dtype: text
+    doc: The shape of the waveform, e.g., 'Triangle', 'N-shape', 'Sawhorse'.
+  datasets:
+  - name: data
+    dtype: float64
+    shape:
+    - null
+    doc: The applied ramp voltage values. It should be a 1D array representing
+      the voltage over time.
+    attributes:
+    - name: unit
+      dtype: text
+      value: volts
+      doc: Unit of the data values, should be 'volts'.
