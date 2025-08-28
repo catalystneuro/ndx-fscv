@@ -14,12 +14,10 @@ load_namespaces(str(__spec_path))
 
 FSCVResponseSeries = get_class("FSCVResponseSeries", "ndx-fscv")
 FSCVExcitationSeries = get_class("FSCVExcitationSeries", "ndx-fscv")
-FSCVBackgroundSubtractedSeries = get_class("FSCVBackgroundSubtractedSeries", "ndx-fscv")
 
 __all__ = [
     "FSCVResponseSeries",
     "FSCVExcitationSeries",
-    "FSCVBackgroundSubtractedSeries",
 ]
 
 # Remove these functions/modules from the package

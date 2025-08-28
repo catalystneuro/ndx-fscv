@@ -5,10 +5,10 @@ namespaces:
   contact:
   - ben.dicther@catalystneuro.com
   - szonja.weigl@catalystneuro.com
-  doc: "This NWB extension defines data types for Fast-Scan Cyclic Voltammetry (FSCV),
-    a neurochemical recording\n        technique. It supports storing the applied
-    triangular ramp waveform, measured electrochemical current, and\n        derived
-    cyclic voltammograms used to study dopamine and other neuromodulator dynamics."
+  doc: This NWB extension defines data types for Fast-Scan Cyclic Voltammetry
+    (FSCV), a neurochemical recording technique used to study dopamine and other
+    neuromodulator dynamics. It supports storing the applied triangular ramp
+    waveform, and the measured electrochemical current.
   name: ndx-fscv
   schema:
   - namespace: core

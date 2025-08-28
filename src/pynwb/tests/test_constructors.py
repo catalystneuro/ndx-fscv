@@ -1,10 +1,6 @@
 """Test in-memory Python API constructors for ndx-fscv extension."""
 
-from ndx_fscv.testing.mock import (
-    mock_FSCVResponseSeries,
-    mock_FSCVExcitationSeries,
-    mock_FSCVBackgroundSubtractedSeries,
-)
+from ndx_fscv.testing.mock import mock_FSCVResponseSeries, mock_FSCVExcitationSeries
 
 from pynwb.testing import TestCase
 
@@ -75,33 +71,3 @@ class TestFSCVExcitationSeriesConstructor(TestCase):
         self.assertEqual(excitation_series.scan_frequency, self.scan_frequency)
         self.assertEqual(excitation_series.sweep_rate, self.sweep_rate)
         self.assertEqual(excitation_series.waveform_shape, self.waveform_shape)
-
-
-class TestFSCVBackgroundSubtractedSeriesConstructor(TestCase):
-    """Simple unit test for creating FSCV background-subtracted series."""
-
-    def setUp(self):
-        """Set up any state specific to the execution of the given class."""
-        self.name = "test_fscv_background_subtracted_series"
-        self.description = "A mock FSCV background-subtracted series to be used for testing."
-        self.number_of_electrodes = 4
-        self.sampling_frequency = 500.0
-
-    def test_fscv_background_subtracted_series(self):
-        """Test that the constructor for FSCVBackgroundSubtractedSeries sets values as expected."""
-
-        background_subtracted_series = mock_FSCVBackgroundSubtractedSeries(
-            name=self.name,
-            description=self.description,
-            number_of_electrodes=self.number_of_electrodes,
-            sampling_frequency=self.sampling_frequency,
-        )
-
-        self.assertEqual(background_subtracted_series.name, self.name)
-        self.assertEqual(background_subtracted_series.description, self.description)
-        self.assertEqual(background_subtracted_series.unit, "amperes")
-        self.assertEqual(background_subtracted_series.data.shape[1], self.number_of_electrodes)
-        self.assertEqual(background_subtracted_series.data.shape[0], 100)
-        self.assertEqual(background_subtracted_series.rate, self.sampling_frequency)
-        self.assertIsNotNone(background_subtracted_series.response_series)
-        self.assertEqual(background_subtracted_series.response_series.unit, "amperes")

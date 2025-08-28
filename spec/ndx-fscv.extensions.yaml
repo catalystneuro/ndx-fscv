@@ -61,28 +61,3 @@ groups:
       dtype: text
       value: volts
       doc: Unit of the data values, should be 'volts'.
-- neurodata_type_def: FSCVBackgroundSubtractedSeries
-  neurodata_type_inc: TimeSeries
-  doc: An extension of TimeSeries to store FSCV data with background subtraction
-    applied.
-  datasets:
-  - name: data
-    dtype: float64
-    dims:
-    - num_timepoints
-    - num_electrodes
-    shape:
-    - null
-    - null
-    doc: The corrected data values after background subtraction. It should be a
-      2D array where the first dimension represents time points and the second
-      dimension represents measured current from the electrodes.
-    attributes:
-    - name: unit
-      dtype: text
-      value: amperes
-      doc: Unit of the data values, should be 'amperes'.
-  links:
-  - name: response_series
-    target_type: FSCVResponseSeries
-    doc: The link to the raw FSCV data.

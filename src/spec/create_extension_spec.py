@@ -9,9 +9,11 @@ def main():
     ns_builder = NWBNamespaceBuilder(
         name="""ndx-fscv""",
         version="""0.1.0""",
-        doc="""This NWB extension defines data types for Fast-Scan Cyclic Voltammetry (FSCV), a neurochemical recording
-        technique. It supports storing the applied triangular ramp waveform, measured electrochemical current, and
-        derived cyclic voltammograms used to study dopamine and other neuromodulator dynamics.""",
+        doc=(
+            "This NWB extension defines data types for Fast-Scan Cyclic Voltammetry (FSCV), "
+            "a neurochemical recording technique used to study dopamine and other neuromodulator dynamics. "
+            "It supports storing the applied triangular ramp waveform, and the measured electrochemical current."
+        ),
         author=[
             "Ben Dichter",
             "Szonja Weigl",
@@ -118,43 +120,7 @@ def main():
         ],
     )
 
-    fscv_background_subtracted_series = NWBGroupSpec(
-        neurodata_type_def="FSCVBackgroundSubtractedSeries",
-        neurodata_type_inc="TimeSeries",
-        doc="An extension of TimeSeries to store FSCV data with background subtraction applied.",
-        datasets=[
-            NWBDatasetSpec(
-                name="data",
-                doc=(
-                    "The corrected data values after background subtraction. "
-                    "It should be a 2D array where the first dimension represents time points "
-                    "and the second dimension represents measured current from the electrodes."
-                ),
-                dtype="float64",
-                shape=[
-                    None,
-                    None,
-                ],
-                dims=[
-                    "num_timepoints",
-                    "num_electrodes",
-                ],
-                attributes=[
-                    NWBAttributeSpec(
-                        name="unit",
-                        doc="Unit of the data values, should be 'amperes'.",
-                        dtype="text",
-                        value="amperes",
-                    ),
-                ],
-            ),
-        ],
-        links=[
-            NWBLinkSpec(name="response_series", target_type="FSCVResponseSeries", doc="The link to the raw FSCV data.")
-        ],
-    )
-
-    new_data_types = [fscv_response_series, fscv_excitation_series, fscv_background_subtracted_series]
+    new_data_types = [fscv_response_series, fscv_excitation_series]
 
     # export the spec to yaml files in the root spec folder
     output_dir = str((Path(__file__).parent.parent.parent / "spec").absolute())
