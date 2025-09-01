@@ -34,18 +34,11 @@ def main():
             NWBDatasetSpec(
                 name="data",
                 doc=(
-                    "The data values. It should be a 2D array where the first dimension represents time points "
-                    "and the second dimension represents measured current from the electrodes."
+                    "The data values. May be 1D or 2D. The first dimension must be time. The optional second "
+                    "dimension refers to the electrodes that acquired the series."
                 ),
                 dtype="float64",
-                shape=[
-                    None,
-                    None,
-                ],
-                dims=[
-                    "num_timepoints",
-                    "num_electrodes",
-                ],
+                shape=((None,), (None, None)),
                 attributes=[
                     NWBAttributeSpec(
                         name="unit",
@@ -87,9 +80,7 @@ def main():
                 name="data",
                 doc="The applied ramp voltage values. It should be a 1D array representing the voltage over time.",
                 dtype="float64",
-                shape=[
-                    None,
-                ],
+                shape=(None,),
                 attributes=[
                     NWBAttributeSpec(
                         name="unit",
